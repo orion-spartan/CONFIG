@@ -1,35 +1,14 @@
 return {
-  "MeanderingProgrammer/render-markdown.nvim",
-  dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-mini/mini.nvim" }, -- if you use the mini.nvim suite
-  ---@module 'render-markdown'
-  ---@type render.md.UserConfig
-  opts = {
-    heading = {
-      enabled = true,
-      sign = true,
-      style = "full",
-      icons = { "① ", "② ", "③ ", "④ ", "⑤ ", "⑥ " },
-      left_pad = 1,
+  {
+    "iamcco/markdown-preview.nvim",
+    build = "cd app && npm install",
+    ft = "markdown",
+    lazy = true,
+    keys = {
+      { "gm", "<cmd>MarkdownPreviewToggle<cr>", desc = "Markdown Preview" },
     },
-    bullet = {
-      enabled = true,
-      icons = { "●", "○", "◆", "◇" },
-      right_pad = 1,
-      highlight = "render-markdownBullet",
-    },
-    checkbox = {
-      enabled = true,
-      unchecked = {
-        icon = "󰄱     ",
-        highlight = "RenderMarkdownUnchecked",
-      },
-      checked = {
-        icon = "󰱒     ",
-        highlight = "RenderMarkdownChecked",
-      },
-      custom = {
-        todo = { raw = "[-]", rendered = "󰥔     ", highlight = "RenderMarkdownTodo" },
-      },
-    },
+    config = function()
+      vim.g.mkdp_auto_close = true
+    end,
   },
 }
